@@ -1,9 +1,4 @@
-﻿using DesignPatterns.Command;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DesignPatterns.Observer
+﻿namespace DesignPatterns.Observer
 {
     interface IObservable
     {

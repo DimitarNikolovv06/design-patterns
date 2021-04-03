@@ -1,7 +1,5 @@
 ﻿using DesignPatterns.Observer;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DesignPatterns.ObserverAndObservable
 {
@@ -20,11 +18,11 @@ namespace DesignPatterns.ObserverAndObservable
         {
             if (stateUp)
             {
-                Console.WriteLine($" {Name} is already in up state");
+                Console.WriteLine($" {Name} is already in up state, provide a new command.");
             }
             else
             {
-                stateUp = false;
+                stateUp = true;
                 Console.WriteLine($" {Name} is now in up state");
             }
 
@@ -34,10 +32,11 @@ namespace DesignPatterns.ObserverAndObservable
         {
             if (!stateUp)
             {
-                Console.WriteLine($" {Name} is already in down state");
+                Console.WriteLine($" {Name} is already in down state, provide a new command.");
             }
             else
             {
+                stateUp = false;
                 Console.WriteLine($" {Name} is now in down state");
             }
         }

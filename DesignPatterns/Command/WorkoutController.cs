@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace DesignPatterns.Command
 {
     class WorkoutController
@@ -16,8 +15,16 @@ namespace DesignPatterns.Command
 
         public void ExecuteCommand()
         {
-            Console.WriteLine($"Now executing {command.GetCommandName()} command");
-            this.command.Execute();
+            if (this.command != null)
+            {
+                Console.WriteLine($"The fitness instrictor is now executing the {command.GetCommandName()} command");
+                this.command.Execute();
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid command");
+            }
         }
     }
 }

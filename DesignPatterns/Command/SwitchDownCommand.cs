@@ -1,7 +1,5 @@
 ﻿using DesignPatterns.ObserverAndObservable;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DesignPatterns.Command
 {
@@ -10,12 +8,27 @@ namespace DesignPatterns.Command
         private TrainingGuy trainingGuy;
         private string commandName = "Down";
 
+        public SwitchDownCommand()
+        {
+        }
+
+        public void SetTrainingGuy(TrainingGuy trainingGuy)
+        {
+            this.trainingGuy = trainingGuy;
+        }
+
         public SwitchDownCommand(TrainingGuy trainingGuy)
         {
             this.trainingGuy = trainingGuy;
         }
         public void Execute()
         {
+            if (trainingGuy == null)
+            {
+                Console.WriteLine("You have not set the training guy");
+                return;
+            }
+
             this.trainingGuy.SwitchDown();
             this.trainingGuy.NotifyObservers(commandName);
         }

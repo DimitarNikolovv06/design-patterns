@@ -1,6 +1,6 @@
 ﻿using DesignPatterns.Command;
+using DesignPatterns.FactoryMethod;
 using DesignPatterns.ObserverAndObservable;
-using System;
 
 namespace DesignPatterns
 {
@@ -16,18 +16,20 @@ namespace DesignPatterns
             trainingGuy.Subscribe(watcher1);
             trainingGuy.Subscribe(watcher2);
             trainingGuy.Subscribe(watcher3);
-            WorkoutController workoutController = new WorkoutController();
-            SwitchUpCommand switchUpCommand = new SwitchUpCommand(trainingGuy);
-            SwitchDownCommand switchDownCommand = new SwitchDownCommand(trainingGuy);
+            WorkoutController fitnessInstructor = new WorkoutController();
 
-            workoutController.SetCommand(switchUpCommand);
-            workoutController.ExecuteCommand();
+            SwitchDownCommand switchDownCommand = (SwitchDownCommand)CommandFactory.Create(CommandFactory.commandList.SwitchDown, trainingGuy);
+            SwitchUpCommand switchUpCommand = (SwitchUpCommand)CommandFactory.Create(CommandFactory.commandList.SwitchUp);
+            switchUpCommand.SetTrainingGuy(trainingGuy);
 
-            workoutController.SetCommand(switchDownCommand);
-            workoutController.ExecuteCommand();
+            fitnessInstructor.SetCommand(switchUpCommand);
+            fitnessInstructor.ExecuteCommand();
 
-            workoutController.SetCommand(switchUpCommand);
-            workoutController.ExecuteCommand();
+            fitnessInstructor.SetCommand(switchDownCommand);
+            fitnessInstructor.ExecuteCommand();
+
+            fitnessInstructor.SetCommand(switchUpCommand);
+            fitnessInstructor.ExecuteCommand();
         }
     }
 }
